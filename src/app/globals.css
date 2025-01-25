@@ -65,4 +65,20 @@
   }
 }
 
+.rotating-image {
+  animation: rotate 20s linear infinite; /* Animation for rotation */
+}
 
+@keyframes rotate {
+  from {
+      transform: rotate(0deg); /* Start rotation */
+  }
+  to {
+      transform: rotate(360deg); /* End rotation */
+  }
+}
+
+.rotating-image img {
+  width: 450px; /* Set image width */
+  height: 400px; /* Set image height */
+}
