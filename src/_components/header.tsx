@@ -10,7 +10,7 @@ const Header = ({className}: {className?: string}) => {
     { id: 4, name: "Technology", href: "/technology" },
   ];
   return (
-    <header className={`flex items-center justify-end w-full mt-20 ${className}`}>
+    <header className={`flex items-center justify-end w-full  ${className}`}>
       <ul className="flex items-center justify-start w-full h-16 max-w-3xl text-sm gap-x-16 bg-white/10 backdrop-blur-md">
         <span></span>
         {menuList.map((item) => (

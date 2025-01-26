@@ -6,7 +6,6 @@
     return (
       <BackgroundBeamsWithCollision className='text-white flex justify-between flex-col bg-[url("/assets/home/background-home-desktop.jpg")] bg-no-repeat bg-cover bg-center'>
         <HeroSection />
-
       </BackgroundBeamsWithCollision>
     );
   };

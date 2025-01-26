@@ -4,7 +4,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <BackgroundBeamsWithCollision className='text-white flex gap-8 flex-col bg-[url("/assets/destination/background-destination-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
+    <BackgroundBeamsWithCollision className='text-white  flex gap-20 flex-col bg-[url("/assets/destination/background-destination-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
        <DestinationSection/>
     </BackgroundBeamsWithCollision>
   )

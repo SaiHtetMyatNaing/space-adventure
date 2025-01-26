@@ -5,7 +5,7 @@ import Header from "../header";
 const HeroSection = () => {
   return (
     <>
-      <Header />
+      <Header className="mt-12"/>
       <section className=" flex select-none   uppercase  gap-4 items-end justify-between mb-[10em] text-center max-w-full w-full px-[10em]">
         <div className="flex flex-col items-start justify-start w-full max-w-2xl gap-4">
           <h1 className="tracking-[0.3em]">So, You want to go to</h1>
