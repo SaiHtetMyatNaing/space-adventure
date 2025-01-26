@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Header from "../header";
-
+import { motion } from "framer-motion";
 const DestinationSection = () => {
   return (
     <>
@@ -40,11 +40,33 @@ const DestinationSection = () => {
 
           {destinations.map((destination) => {
             return (
+        <motion.div
+              key={destination.tabValue}
+              className="w-full h-full max-w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 100, 
+                duration: 0.5 
+              }}
+            >
               <TabsContent
                 value={destination.tabValue}
                 key={destination.tabValue}
                 className="flex items-center justify-between max-w-6xl"
               >
+
+<motion.div
+              className="w-full h-full max-w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 100, 
+                duration: 0.5 
+              }}
+            >
                 <Image
                   src={destination.image.src}
                   alt={destination.image.alt}
@@ -52,6 +74,7 @@ const DestinationSection = () => {
                   height={400}
                   className="ml-12 rotating-image"
                 />
+                </motion.div>
 
                 <Card className="flex flex-col items-start max-w-md gap-3 text-white bg-transparent border-none">
                   <CardHeader>
@@ -83,9 +106,11 @@ const DestinationSection = () => {
                   </CardFooter>
                 </Card>
               </TabsContent>
+              </motion.div>
             );
           })}
         </Tabs>
+
       </main>
     </>
   );

@@ -1,11 +1,12 @@
 import CrewSection from '@/_components/crew/crew-creation'
+import BackgroundBeamsWithCollision from '@/components/ui/background-beams-with-collision'
 import React from 'react'
 
 const page = () => {
   return (
-    <main className='text-white gap-20 flex justify-center items-center flex-col bg-[url("/assets/crew/background-crew-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
+    <BackgroundBeamsWithCollision className='text-white gap-20 flex justify-center items-center flex-col bg-[url("/assets/crew/background-crew-desktop.jpg")] bg-no-repeat bg-cover overflow-hidden h-screen bg-center'>
        <CrewSection/>
-    </main>
+    </BackgroundBeamsWithCollision>
   )
 }
 

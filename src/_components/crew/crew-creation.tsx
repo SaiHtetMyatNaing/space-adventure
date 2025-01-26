@@ -11,20 +11,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import Header from "../header";
 
 const CrewSection = () => {
   return (
     <>
-      <Header className="-mt-20" />
+      <Header className="-mt-[85px]" />
       <main className="flex items-center justify-between w-full max-w-6xl gap-2 mx-auto overflow-hidden">
         <Tabs defaultValue="mars" className="flex flex-col w-full mx-auto">
-          <h1 className="ml-6 text-[1.3em] tracking-[0.3em]">
+          <motion.h1 
+          initial={{ x : '-100%' , opacity : 0 }}
+          animate={{ opacity: 1, x: '0%' }}
+          exit={{ opacity: 0, x: '-100%' }}
+          className="ml-6 text-[1.3em] tracking-[0.3em]">
             02 Meet Your Crew
-          </h1>
+          </motion.h1>
 
           {destinations.map((destination) => {
             return (
+              <motion.div
+              key={destination.tabValue}
+              className="w-full h-full max-w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 100, 
+                duration: 0.5 
+              }}
+            >
               <TabsContent
                 value={destination.tabValue}
                 key={destination.tabValue}
@@ -59,11 +75,12 @@ const CrewSection = () => {
                 <Image
                   src={destination.image.src}
                   alt={destination.image.alt}
-                  width={450}
+                  width={420}
                   height={400}
                   className="ml-12 rotating-image"
                 />
               </TabsContent>
+              </motion.div>
             );
           })}
         </Tabs>

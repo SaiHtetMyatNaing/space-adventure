@@ -1,13 +1,13 @@
-
-import React from 'react'
-import Header from '../../_components/header'
+import React from "react";
+import TechSection from "@/_components/technology/tech-section";
+import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-collision";
 
 const page = () => {
   return (
-    <main className='text-white flex justify-between flex-col bg-[url("/assets/technology/background-technology-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
-       <Header className='mt-20'/>
-    </main>
-  )
-}
+    <BackgroundBeamsWithCollision className='text-white  flex gap-20 flex-col bg-[url("/assets/technology/background-technology-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
+      <TechSection />
+    </BackgroundBeamsWithCollision>
+  );
+};
 
-export default page
+export default page;
