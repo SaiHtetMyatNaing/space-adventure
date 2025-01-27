@@ -1,4 +1,4 @@
-import { KAPLAYCtx} from "kaplay";
+import { KAPLAYCtx } from "kaplay";
 
 // src/game/entities/astronaut.js
 export const createAstronaut = (k: KAPLAYCtx) => {
@@ -16,6 +16,7 @@ export const createAstronaut = (k: KAPLAYCtx) => {
     },
   });
 
+  k.loadSound("jump-up", "./sounds/jump-up.mp3");
   // Create astronaut
   const player = k.add([
     k.sprite("astronaunt"),
@@ -33,7 +34,6 @@ export const createAstronaut = (k: KAPLAYCtx) => {
 
   // Set initial animation
   player.play("right-idle-sprite");
-
   // Movement controls
   k.onKeyDown("right", () => {
     if (player.getCurAnim()?.name !== "right-run-idle" && player.isGrounded()) {
@@ -53,12 +53,16 @@ export const createAstronaut = (k: KAPLAYCtx) => {
 
   k.onKeyDown("up", () => {
     if (player.isGrounded() && player.getCurAnim()?.name.includes("right")) {
+      k.play("jump-up", { volume: 0.5 });
+
       player.jump(400);
       player.play("right-jump-idle");
     } else if (
       player.isGrounded() &&
       player.getCurAnim()?.name.includes("left")
     ) {
+      k.play("jump-up", { volume: 0.5 });
+
       player.jump(400);
       player.play("left-jump-idle");
     }
