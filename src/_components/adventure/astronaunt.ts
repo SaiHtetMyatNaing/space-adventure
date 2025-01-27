@@ -15,17 +15,19 @@ export const createAstronaut = (k: KAPLAYCtx) => {
       "left-run-idle": { from: 15, to: 12, loop: true },
     },
   });
-
+  // loadingSOund
   k.loadSound("jump-up", "./sounds/jump-up.mp3");
+  k.loadSound("run", "./sounds/running-sound.mp3");
   // Create astronaut
   const player = k.add([
     k.sprite("astronaunt"),
-    k.scale(1.4),
+    k.scale(1.5),
     k.pos(200, 200),
     k.area(),
     k.body(),
     k.anchor("center"),
     k.rotate(0),
+    k.doubleJump(),
     {
       speed: 300,
       direction: "right",
@@ -34,7 +36,11 @@ export const createAstronaut = (k: KAPLAYCtx) => {
 
   // Set initial animation
   player.play("right-idle-sprite");
-  // Movement controls
+
+  //sound controls
+  const handleRunningSound = () => k.play("run", { volume: 0.5 });
+
+  // Movement controls(x-axis)
   k.onKeyDown("right", () => {
     if (player.getCurAnim()?.name !== "right-run-idle" && player.isGrounded()) {
       player.play("right-run-idle");
@@ -51,20 +57,25 @@ export const createAstronaut = (k: KAPLAYCtx) => {
     player.move(-player.speed, 0);
   });
 
+  // handle sound
+  const handleJumpSound = () => k.play("jump-up", { volume: 0.5 });
+
+  k.onKeyPress('up', ()=> {
+    handleJumpSound();
+  })
+
+  // handle jumping controls
   k.onKeyDown("up", () => {
     if (player.isGrounded() && player.getCurAnim()?.name.includes("right")) {
-      k.play("jump-up", { volume: 0.5 });
-
-      player.jump(400);
       player.play("right-jump-idle");
+      player.jump();
     } else if (
       player.isGrounded() &&
       player.getCurAnim()?.name.includes("left")
     ) {
-      k.play("jump-up", { volume: 0.5 });
-
-      player.jump(400);
       player.play("left-jump-idle");
+      player.jump();
+
     }
   });
 
@@ -72,7 +83,10 @@ export const createAstronaut = (k: KAPLAYCtx) => {
   player.on("ground", () => {
     if (player.getCurAnim()?.name.includes("right")) {
       player.play("right-idle-sprite");
+      handleJumpSound().stop();
     } else if (player.getCurAnim()?.name.includes("left")) {
+      handleJumpSound().stop();
+
       player.play("left-idle-sprite");
     }
   });
@@ -80,12 +94,14 @@ export const createAstronaut = (k: KAPLAYCtx) => {
   // Key release animations
   k.onKeyRelease("right", () => {
     if (player.getCurAnim()?.name === "right-run-idle") {
+      handleRunningSound().stop();
       player.play("right-idle-sprite");
     }
   });
 
   k.onKeyRelease("left", () => {
     if (player.getCurAnim()?.name === "left-run-idle") {
+      handleRunningSound().stop();
       player.play("left-idle-sprite");
     }
   });

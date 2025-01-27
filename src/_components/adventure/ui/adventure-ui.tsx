@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import initKaplay from "../kaplayCtx";
 import { createAstronaut } from "../astronaunt";
 import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-collision";
+import { main } from "../map";
 
 const SpaceAdventure = () => {
   useEffect(() => {
@@ -18,7 +19,6 @@ const SpaceAdventure = () => {
 
     // Adding Sprite Section
     k.loadSprite("background", "./adventure/space-bg.png");
-    k.loadSprite("astroid", "./adventure/astroid.png");
     k.loadSound("space-wave", "./sounds/space-waves.mp3");
     k.loadSprite("astronaunt", "./adventure/astronaunt.png", {
       sliceX: 4,
@@ -33,29 +33,14 @@ const SpaceAdventure = () => {
       },
     });
 
-    k.add([k.sprite("background"), k.scale(1.5), k.fixed()]);
-
+    // k.add([k.sprite("background"), k.scale(1.5), k.fixed()]);
     k.setGravity(1200);
+    main(k);
 
     // player
-    createAstronaut(k);
 
     // astroid section
-    for (let i = 0; i < 10; i++) {
-      const astroid = k.add([
-        k.sprite("astroid"),
-        k.scale(0.3),
-        k.pos(300 * i, 500 + i),
-        k.body({ isStatic: true }),
-        k.area(),
-        k.rotate(20),
-        k.anchor("center"),
-        k.anchor("center"),
-      ]);
-      k.loop(0.4, () => {
-        astroid.rotateBy(20 * i);
-      });
-    }
+   
   }, []);
 
   return (
