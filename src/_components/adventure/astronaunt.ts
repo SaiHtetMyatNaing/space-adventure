@@ -1,4 +1,17 @@
-import { KAPLAYCtx } from "kaplay";
+import {  GameObj, KAPLAYCtx } from "kaplay";
+
+
+
+type PlayerObj = GameObj & {
+  speed: number;
+  direction: string;
+  play: (anim: string) => void;
+  getCurAnim: () => { name: string } | null;
+  isGrounded: () => boolean;
+  move: (x: number, y: number) => void;
+  jump: () => void;
+  on: (event: string, callback: () => void) => void;
+};
 
 // src/game/entities/astronaut.js
 export const createAstronaut = (k: KAPLAYCtx) => {
@@ -19,11 +32,10 @@ export const createAstronaut = (k: KAPLAYCtx) => {
   k.loadSound("jump-up", "./sounds/jump-up.mp3");
   k.loadSound("run", "./sounds/running-sound.mp3");
   // Create astronaut
-  const player = k.add([
+  const playerComponent = [
     k.sprite("astronaunt"),
-    k.scale(1.5),
-    k.pos(200, 200),
-    k.area(),
+    k.scale(),
+    k.area({ shape: new k.Rect(k.vec2(0, 0), 32, 60) }),
     k.body(),
     k.anchor("center"),
     k.rotate(0),
@@ -32,79 +44,96 @@ export const createAstronaut = (k: KAPLAYCtx) => {
       speed: 300,
       direction: "right",
     },
-  ]);
+  ];
 
-  // Set initial animation
-  player.play("right-idle-sprite");
 
-  //sound controls
-  const handleRunningSound = () => k.play("run", { volume: 0.5 });
-
-  // Movement controls(x-axis)
-  k.onKeyDown("right", () => {
-    if (player.getCurAnim()?.name !== "right-run-idle" && player.isGrounded()) {
-      player.play("right-run-idle");
-    }
-    if (player.direction === "right") player.direction = "right";
-    player.move(player.speed, 0);
-  });
-
-  k.onKeyDown("left", () => {
-    if (player.getCurAnim()?.name !== "left-run-idle" && player.isGrounded()) {
-      player.play("left-run-idle");
-    }
-    if (player.direction === "right") player.direction = "right";
-    player.move(-player.speed, 0);
-  });
-
-  // handle sound
-  const handleJumpSound = () => k.play("jump-up", { volume: 0.5 });
-
-  k.onKeyPress('up', ()=> {
-    handleJumpSound();
-  })
-
-  // handle jumping controls
-  k.onKeyDown("up", () => {
-    if (player.isGrounded() && player.getCurAnim()?.name.includes("right")) {
-      player.play("right-jump-idle");
-      player.jump();
-    } else if (
-      player.isGrounded() &&
-      player.getCurAnim()?.name.includes("left")
-    ) {
-      player.play("left-jump-idle");
-      player.jump();
-
-    }
-  });
-
-  // Landing animation
-  player.on("ground", () => {
-    if (player.getCurAnim()?.name.includes("right")) {
+  return {
+    components: playerComponent,
+    setup: (player : PlayerObj) => {
+      // Set initial animation
       player.play("right-idle-sprite");
-      handleJumpSound().stop();
-    } else if (player.getCurAnim()?.name.includes("left")) {
-      handleJumpSound().stop();
 
-      player.play("left-idle-sprite");
-    }
-  });
+      //sound controls
+      const handleRunningSound = () => k.play("run", { volume: 0.5 });
 
-  // Key release animations
-  k.onKeyRelease("right", () => {
-    if (player.getCurAnim()?.name === "right-run-idle") {
-      handleRunningSound().stop();
-      player.play("right-idle-sprite");
-    }
-  });
+      // Movement controls(x-axis)
+      k.onKeyDown("right", () => {
+        if (
+          player.getCurAnim()?.name !== "right-run-idle" &&
+          player.isGrounded()
+        ) {
+          player.play("right-run-idle");
+        }
+        if (player.direction === "right") player.direction = "right";
+        player.move(player.speed, 0);
+      });
 
-  k.onKeyRelease("left", () => {
-    if (player.getCurAnim()?.name === "left-run-idle") {
-      handleRunningSound().stop();
-      player.play("left-idle-sprite");
-    }
-  });
+      k.onKeyDown("left", () => {
+        if (
+          player.getCurAnim()?.name !== "left-run-idle" &&
+          player.isGrounded()
+        ) {
+          player.play("left-run-idle");
+        }
+        if (player.direction === "right") player.direction = "right";
+        player.move(-player.speed, 0);
+      });
 
-  return player;
+      // handle sound
+      const handleJumpSound = () => k.play("jump-up", { volume: 0.5 });
+
+      k.onKeyPress("up", () => {
+        handleJumpSound();
+      });
+
+      // handle jumping controls
+      k.onKeyDown("up", () => {
+        if (
+          player.isGrounded() &&
+          player.getCurAnim()?.name.includes("right")
+        ) {
+          player.play("right-jump-idle");
+          player.jump();
+        } else if (
+          player.isGrounded() &&
+          player.getCurAnim()?.name.includes("left")
+        ) {
+          player.play("left-jump-idle");
+          player.jump();
+        }
+      });
+
+      // Landing animation
+      player.on("ground", () => {
+        if (player.getCurAnim()?.name.includes("right")) {
+          player.play("right-idle-sprite");
+          handleJumpSound().stop();
+        } else if (player.getCurAnim()?.name.includes("left")) {
+          handleJumpSound().stop();
+
+          player.play("left-idle-sprite");
+        }
+      });
+
+      // Key release animations
+      k.onKeyRelease("right", () => {
+        if (player.getCurAnim()?.name === "right-run-idle") {
+          handleRunningSound().stop();
+          player.play("right-idle-sprite");
+        }
+      });
+
+      k.onKeyRelease("left", () => {
+        if (player.getCurAnim()?.name === "left-run-idle") {
+          handleRunningSound().stop();
+          player.play("left-idle-sprite");
+        }
+      });
+
+    player.onUpdate(() => {
+      k.setCamPos(player.pos.add(k.vec2(50, 0))); 
+    })
+     
+    },
+  };
 };

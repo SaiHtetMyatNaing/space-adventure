@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import initKaplay from "../kaplayCtx";
-import { createAstronaut } from "../astronaunt";
-import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-collision";
 import { main } from "../map";
 
 const SpaceAdventure = () => {
@@ -33,20 +31,15 @@ const SpaceAdventure = () => {
       },
     });
 
-    // k.add([k.sprite("background"), k.scale(1.5), k.fixed()]);
     k.setGravity(1200);
+    
+
     main(k);
-
-    // player
-
-    // astroid section
    
   }, []);
 
   return (
-    <BackgroundBeamsWithCollision>
-      <canvas id="game" />;
-    </BackgroundBeamsWithCollision>
+      <canvas id="game" />
   );
 };
 

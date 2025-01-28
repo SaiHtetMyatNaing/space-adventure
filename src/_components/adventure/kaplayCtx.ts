@@ -13,3 +13,6 @@ export default function initKaplay(canvas : HTMLCanvasElement) {
         pixelDensity : devicePixelRatio,
      })
 }
+
+
+
