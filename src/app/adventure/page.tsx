@@ -1,9 +1,9 @@
-import SpaceAdventure from '@/_components/adventure/ui/adventure-ui'
+import { PixiComponent } from '@/_components/adventure/pixi-component'
 import React from 'react'
 
 const page = () => {
   return (
-    <SpaceAdventure/>
+    <PixiComponent/>
   )
 }
 
