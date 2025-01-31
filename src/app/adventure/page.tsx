@@ -1,9 +1,11 @@
-import { PixiComponent } from '@/_components/adventure/pixi-component'
+import MainGame from '@/game/MainGameScreen'
 import React from 'react'
 
 const page = () => {
   return (
-    <PixiComponent/>
+    <div>
+        <MainGame/>
+    </div>
   )
 }
 
