@@ -1,4 +1,4 @@
-import HeroSection from "@/_components/home/hero-section";
+import HeroSection from "@/components/ui/home/hero-section";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import React from "react";
 

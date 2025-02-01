@@ -1,4 +1,4 @@
-import DestinationSection from "@/_components/destination/destination";
+import DestinationSection from "@/components/ui/destination/destination";
 import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-collision";
 import React from "react";
 

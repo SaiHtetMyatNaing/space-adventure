@@ -1,5 +1,5 @@
 import React from "react";
-import TechSection from "@/_components/technology/tech-section";
+import TechSection from "@/components/ui/technology/tech-section";
 import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-collision";
 
 const page = () => {

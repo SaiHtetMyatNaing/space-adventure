@@ -1,4 +1,4 @@
-import CrewSection from '@/_components/crew/crew-creation'
+import CrewSection from '@/components/ui/crew/crew-creation'
 import BackgroundBeamsWithCollision from '@/components/ui/background-beams-with-collision'
 import React from 'react'
 

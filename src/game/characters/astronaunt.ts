@@ -17,9 +17,11 @@ export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
 
     this.spriteName = config.name;
+    this.scene = config.scene;
 
     // Create animations once during initialization
     this.createAnimations();
+    this.setOrigin(0.5, 0.5);
   }
 
   // Create all animations for the astronaut
@@ -95,20 +97,21 @@ export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
     const cursors = this.scene.input.keyboard?.createCursorKeys();
     // added body as we need the astronaunt physical body to be able to check if it is on the floor
     const body = this.body as Phaser.Physics.Arcade.Body;
+    body.setSize(32, 64, true);
 
     // check the animation for running
     if (cursors?.right.isDown) {
       if (this.anims.currentAnim?.key !== "right-run") {
         this.play("right-run", true);
+        this.setVelocityX(200);
       }
-      this.setVelocityX(200);
     } else if (cursors?.left.isDown) {
       if (this.anims.currentAnim?.key !== "left-run") {
         this.play("left-run", true);
+        this.setVelocityX(-200);
       }
-      this.setVelocityX(-200);
     } else {
-        // reset the animation to the idle animation
+      // reset the animation to the idle animation
       if (this.anims.currentAnim?.key.includes("right") && body.onFloor()) {
         this.play("idle-right", true);
         this.setVelocityX(0);
@@ -120,12 +123,12 @@ export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
 
     // checking for jumping and add the animation
     if (cursors?.up.isDown && body.onFloor()) {
+      this.scene.sound.play("jump-sound");
       if (this.anims.currentAnim?.key.includes("right")) {
         this.setVelocityY(-500); // Jump up
         this.play("right-jump", true);
-      } else {
+      } else if(this.anims.currentAnim?.key.includes("left")) {
         this.setVelocityY(-500); // Jump up
-
         this.play("left-jump", true);
       }
     }
