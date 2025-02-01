@@ -1,4 +1,3 @@
-import Phaser from "phaser";
 import Astronaunt from "../characters/astronaunt";
 export class SpaceJumper extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap;

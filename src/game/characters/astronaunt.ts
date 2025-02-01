@@ -1,4 +1,3 @@
-import Phaser from "phaser";
 
 export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
   private spriteName: string;
