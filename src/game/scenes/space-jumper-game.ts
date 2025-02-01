@@ -3,6 +3,7 @@ export class SpaceJumper extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap;
   private tileset!: Phaser.Tilemaps.Tileset;
   private tileset2!: Phaser.Tilemaps.Tileset;
+  private astronaunt!: Astronaunt;
 
   constructor() {
     super({ key: "space-jumper" });
@@ -20,7 +21,7 @@ export class SpaceJumper extends Phaser.Scene {
     });
 
     //audio loading
-    this.load.audio('jump-sound' , ['/sounds/jump-up.mp3'])
+    this.load.audio("jump-sound", ["/sounds/jump-up.mp3"]);
   }
 
   create(): void {
@@ -32,28 +33,37 @@ export class SpaceJumper extends Phaser.Scene {
     this.map.createLayer("Background", this.tileset);
 
     // For player to collide with / to be able to jump on/ run on
-    const obstacles =this.map.createLayer("Colliders", this.tileset2)
+    const obstacles = this.map.createLayer("Colliders", this.tileset2);
     obstacles?.setCollisionByProperty({ collides: true });
 
     //Setting up the colliders and enabling them
 
-    const astronaunt = new Astronaunt({
+    this.astronaunt = new Astronaunt({
       scene: this,
       x: this.cameras.main.centerX,
       y: this.cameras.main.centerY,
       name: "astronaunt",
     });
-    
-    this.physics.add.collider(astronaunt, obstacles!);
+    this.astronaunt.setScale(0.8);
 
-//     // temporary debugging code
-//     const debugGraphics = this.add.graphics().setAlpha(0.75);
-//     this.map.renderDebug(debugGraphics, {
-//       tileColor: null, // Color of non-colliding tiles
-//       collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-//       faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
-//     });
- }
+    // adding colliders
+    this.physics.add.collider(this.astronaunt, obstacles!);
+
+
+    // adjusing the camera for sideway scrolling game
+    this.cameras.main.setBounds(0, 0, 2880, 640);
+    // expanding the world of horizontal scrolling game
+    this.physics.world.setBounds(0, 0, 2800, 640);
+    this.cameras.main.startFollow(this.astronaunt);
+
+    // temporary debugging code
+    const debugGraphics = this.add.graphics().setAlpha(0.75);
+    this.map.renderDebug(debugGraphics, {
+      tileColor: null, // Color of non-colliding tiles
+      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+      faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
+    });
+  }
 
   update(): void {
     // Update logic goes here
