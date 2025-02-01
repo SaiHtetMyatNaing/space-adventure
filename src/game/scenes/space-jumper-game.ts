@@ -27,17 +27,15 @@ export class SpaceJumper extends Phaser.Scene {
   create(): void {
     this.map = this.make.tilemap({ key: "map" });
     // Ensure the tileset name matches what is in the map.json file
-    this.tileset = this.map.addTilesetImage("background", "bg-tileset")!;
+    this.tileset = this.map.addTilesetImage("background", "bg-tileset")!
     this.tileset2 = this.map.addTilesetImage("topdownset", "collider-tileset")!;
-    // Ensure layer names match those in Tiled
+    // Ensuring layer names match those in Tiled
     this.map.createLayer("Background", this.tileset);
-
     // For player to collide with / to be able to jump on/ run on
     const obstacles = this.map.createLayer("Colliders", this.tileset2);
-    obstacles?.setCollisionByProperty({ collides: true });
+    // obstacles?.setCollisionByProperty({ collides: true });
 
     //Setting up the colliders and enabling them
-
     this.astronaunt = new Astronaunt({
       scene: this,
       x: this.cameras.main.centerX,
@@ -46,9 +44,9 @@ export class SpaceJumper extends Phaser.Scene {
     });
     this.astronaunt.setScale(0.8);
 
+
     // adding colliders
     this.physics.add.collider(this.astronaunt, obstacles!);
-
 
     // adjusing the camera for sideway scrolling game
     this.cameras.main.setBounds(0, 0, 2880, 640);
@@ -63,6 +61,7 @@ export class SpaceJumper extends Phaser.Scene {
       collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
       faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     });
+
   }
 
   update(): void {

@@ -104,8 +104,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":4,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",
@@ -1721,6 +1721,10 @@
                         }]
                 }],
          "tilewidth":16
+        }, 
+        {
+         "firstgid":4257,
+         "source":"D:\/tiled-map-editor\/games\/7 Levels\/Tiled\/stars.tsj"
         }],
  "tilewidth":16,
  "type":"map",
