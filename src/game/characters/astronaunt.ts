@@ -92,7 +92,6 @@ export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
 
   protected preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
-
     const cursors = this.scene.input.keyboard?.createCursorKeys();
     // added body as we need the astronaunt physical body to be able to check if it is on the floor
     const body = this.body as Phaser.Physics.Arcade.Body;

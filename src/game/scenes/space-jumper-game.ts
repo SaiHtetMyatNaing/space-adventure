@@ -25,16 +25,17 @@ export class SpaceJumper extends Phaser.Scene {
   }
 
   create(): void {
-    this.map = this.make.tilemap({ key: "map" });
+    this.map = this.make.tilemap({ key: "map"  , tileWidth : 64 , tileHeight: 64 });
     // Ensure the tileset name matches what is in the map.json file
     this.tileset = this.map.addTilesetImage("background", "bg-tileset")!
     this.tileset2 = this.map.addTilesetImage("topdownset", "collider-tileset")!;
+  
     // Ensuring layer names match those in Tiled
     this.map.createLayer("Background", this.tileset);
     // For player to collide with / to be able to jump on/ run on
     const obstacles = this.map.createLayer("Colliders", this.tileset2);
-    // obstacles?.setCollisionByProperty({ collides: true });
-
+    obstacles?.setCollisionByProperty({ collides: true });
+    obstacles?.setScale(1.5)
     //Setting up the colliders and enabling them
     this.astronaunt = new Astronaunt({
       scene: this,
@@ -42,29 +43,34 @@ export class SpaceJumper extends Phaser.Scene {
       y: this.cameras.main.centerY,
       name: "astronaunt",
     });
-    this.astronaunt.setScale(0.8);
+    this.astronaunt.setScale(1);
 
 
     // adding colliders
     this.physics.add.collider(this.astronaunt, obstacles!);
 
+
+
     // adjusing the camera for sideway scrolling game
-    this.cameras.main.setBounds(0, 0, 2880, 640);
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     // expanding the world of horizontal scrolling game
-    this.physics.world.setBounds(0, 0, 2800, 640);
+    this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.astronaunt);
 
-    // temporary debugging code
-    const debugGraphics = this.add.graphics().setAlpha(0.75);
-    this.map.renderDebug(debugGraphics, {
-      tileColor: null, // Color of non-colliding tiles
-      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
-    });
+
+
+    // // temporary debugging code
+    // const debugGraphics = this.add.graphics().setAlpha(0.75);
+    // this.map.renderDebug(debugGraphics, {
+    //   tileColor: null, // Color of non-colliding tiles
+    //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+    //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
+    // });
 
   }
 
-  update(): void {
+  update(time : number , delta : number): void {
     // Update logic goes here
+    this.astronaunt.update(delta);
   }
 }
