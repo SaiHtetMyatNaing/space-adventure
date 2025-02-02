@@ -1,9 +1,11 @@
 import Astronaunt from "../characters/astronaunt";
+import Star from "../objects/star";
 export class SpaceJumper extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap;
   private tileset!: Phaser.Tilemaps.Tileset;
   private tileset2!: Phaser.Tilemaps.Tileset;
   private astronaunt!: Astronaunt;
+  private star! : Star;
 
   constructor() {
     super({ key: "space-jumper" });
@@ -20,22 +22,29 @@ export class SpaceJumper extends Phaser.Scene {
       frameHeight: 64,
     });
 
+    //start sprite
+    this.load.spritesheet("star", "./adventure/star.png", {
+      frameWidth: 16, // total width / number of column 256/4
+      frameHeight: 16,
+    });
+
     //audio loading
     this.load.audio("jump-sound", ["/sounds/jump-up.mp3"]);
   }
 
   create(): void {
-    this.map = this.make.tilemap({ key: "map"  , tileWidth : 64 , tileHeight: 64 });
+    this.map = this.make.tilemap({ key: "map", tileWidth: 64, tileHeight: 64 });
     // Ensure the tileset name matches what is in the map.json file
-    this.tileset = this.map.addTilesetImage("background", "bg-tileset")!
+    this.tileset = this.map.addTilesetImage("background", "bg-tileset")!;
     this.tileset2 = this.map.addTilesetImage("topdownset", "collider-tileset")!;
-  
     // Ensuring layer names match those in Tiled
     this.map.createLayer("Background", this.tileset);
     // For player to collide with / to be able to jump on/ run on
     const obstacles = this.map.createLayer("Colliders", this.tileset2);
     obstacles?.setCollisionByProperty({ collides: true });
-    obstacles?.setScale(1.5)
+
+    const objectLayer = this.map.getObjectLayer("Objects");
+    
     //Setting up the colliders and enabling them
     this.astronaunt = new Astronaunt({
       scene: this,
@@ -45,19 +54,27 @@ export class SpaceJumper extends Phaser.Scene {
     });
     this.astronaunt.setScale(1);
 
-
     // adding colliders
     this.physics.add.collider(this.astronaunt, obstacles!);
-
-
-
+     
+    const starManager = new Star(this,obstacles!);
+    starManager.createAnimation();
+    starManager.createStars(objectLayer!);
     // adjusing the camera for sideway scrolling game
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    this.cameras.main.setBounds(
+      0,
+      0,
+      this.map.widthInPixels,
+      this.map.heightInPixels
+    );
     // expanding the world of horizontal scrolling game
-    this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    this.physics.world.setBounds(
+      0,
+      0,
+      this.map.widthInPixels,
+      this.map.heightInPixels
+    );
     this.cameras.main.startFollow(this.astronaunt);
-
-
 
     // // temporary debugging code
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
@@ -66,10 +83,9 @@ export class SpaceJumper extends Phaser.Scene {
     //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
-
   }
 
-  update(time : number , delta : number): void {
+  update(time: number, delta: number): void {
     // Update logic goes here
     this.astronaunt.update(delta);
   }
