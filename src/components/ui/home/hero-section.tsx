@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Header from "../header";
 import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <>
-      <Header className="mt-12" />
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

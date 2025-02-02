@@ -11,12 +11,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Header from "../header";
+
 import { motion } from "framer-motion";
 const DestinationSection = () => {
   return (
     <>
-      <Header className="-mt-9" />
 
       <main className="flex items-center justify-between w-full max-w-6xl gap-4 mx-auto overflow-hidden">
         <Tabs defaultValue="mars" className="flex flex-col w-full mx-auto">

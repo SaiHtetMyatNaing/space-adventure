@@ -52,7 +52,7 @@ export class SpaceJumper extends Phaser.Scene {
       y: this.cameras.main.centerY,
       name: "astronaunt",
     });
-    this.astronaunt.setScale(1);
+    this.astronaunt.setScale(0.8);
 
     // adding colliders
     this.physics.add.collider(this.astronaunt, obstacles!);

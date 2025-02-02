@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Header from "../header";
 
 const TechSection = () => {
   // Animation variants for the pop-up effect
@@ -23,7 +22,7 @@ const TechSection = () => {
 
   return (
     <>
-      <Header className="-mt-[130px]" />
+  
       <motion.main
         className="flex items-center justify-center w-full max-w-6xl mx-auto overflow-hidden"
         initial="hidden"
