@@ -95,7 +95,7 @@ export default class Astronaut extends Phaser.Physics.Arcade.Sprite {
     const cursors = this.scene.input.keyboard?.createCursorKeys();
     // added body as we need the astronaunt physical body to be able to check if it is on the floor
     const body = this.body as Phaser.Physics.Arcade.Body;
-    body.setSize(36, 54, true);
+    body.setSize(36, 54);
 
     // check the animation for running
     if (cursors?.right.isDown) {

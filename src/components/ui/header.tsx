@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import ShinyText from "../shinytext";
 
 const Header = () => {
   const menuList = [
@@ -33,7 +34,7 @@ const Header = () => {
           <li key={item.id} className="flex items-center text-white uppercase gap-x-2">
             <span>0{item.id - 1}</span>
             <Link href={item.href} className="text-white">
-              {item.name}
+            <ShinyText text={item.name} disabled={false} speed={3} className='custom-class' />
             </Link>
           </li>
         ))}

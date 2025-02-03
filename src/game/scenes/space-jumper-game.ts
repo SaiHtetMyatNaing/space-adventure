@@ -1,11 +1,13 @@
 import Astronaunt from "../characters/astronaunt";
+import Question from "../objects/question";
 import Star from "../objects/star";
 export class SpaceJumper extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap;
   private tileset!: Phaser.Tilemaps.Tileset;
   private tileset2!: Phaser.Tilemaps.Tileset;
   private astronaunt!: Astronaunt;
-  private star! : Star;
+  private star!: Star;
+  private question! : Question;
 
   constructor() {
     super({ key: "space-jumper" });
@@ -43,8 +45,11 @@ export class SpaceJumper extends Phaser.Scene {
     const obstacles = this.map.createLayer("Colliders", this.tileset2);
     obstacles?.setCollisionByProperty({ collides: true });
 
+    obstacles?.postFX.addShine(0.3, 0.2, 5);
+
+    //For adding platform to jump on
     const objectLayer = this.map.getObjectLayer("Objects");
-    
+
     //Setting up the colliders and enabling them
     this.astronaunt = new Astronaunt({
       scene: this,
@@ -52,14 +57,15 @@ export class SpaceJumper extends Phaser.Scene {
       y: this.cameras.main.centerY,
       name: "astronaunt",
     });
-    this.astronaunt.setScale(0.8);
 
     // adding colliders
     this.physics.add.collider(this.astronaunt, obstacles!);
-     
-    const starManager = new Star(this,obstacles!);
+
+    //adding star
+    const starManager = new Star(this, obstacles!);
     starManager.createAnimation();
     starManager.createStars(objectLayer!);
+
     // adjusing the camera for sideway scrolling game
     this.cameras.main.setBounds(
       0,
@@ -76,6 +82,12 @@ export class SpaceJumper extends Phaser.Scene {
     );
     this.cameras.main.startFollow(this.astronaunt);
 
+
+    // adding text 
+     // Instantiate Question and create text
+     this.question = new Question(this, obstacles!); // Pass scene and colliders
+     this.question.createQuestion(objectLayer!); // Call createStars with 
+     this.question.createAnswers(objectLayer!);
     // // temporary debugging code
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
     // this.map.renderDebug(debugGraphics, {
