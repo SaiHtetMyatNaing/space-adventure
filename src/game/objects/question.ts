@@ -1,13 +1,12 @@
 import { multipleChoiceQuestion } from "@/lib/multiple-choice-question";
-
-export default class Question {
+export default class Question  {
   public scene: Phaser.Scene;
   private colliders?: Phaser.Tilemaps.TilemapLayer;
   private text?: Phaser.GameObjects.Text; // Made text optional
 
   public constructor(
     scene: Phaser.Scene,
-    colliders?: Phaser.Tilemaps.TilemapLayer
+    colliders?: Phaser.Tilemaps.TilemapLayer,
   ) {
     this.scene = scene; // Reference to the Phaser scene
     this.colliders = colliders;
@@ -29,9 +28,6 @@ export default class Question {
           "Hello World!",
           { fontSize: "32px", color: "#ffffff" }
         );
-
-        this.text.setOrigin(0.5, 0.5);
-
         // Ensuring colliders is defined before adding
         if (this.colliders) {
           this.scene.physics.add.collider(this.text, this.colliders);
@@ -45,8 +41,8 @@ export default class Question {
 
         objectLayer.objects.forEach((object) => {
         if (object.name === "options") {
-            const text = this.scene.add.text(
-            Number(object.x),
+            this.scene.add.text(
+            Number(object.x) + 100,
             Number(object.y),
             multipleChoiceQuestion[0].options[optionCount],
             { fontSize: "32px", color: "#ffffff" }

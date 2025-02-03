@@ -7,7 +7,8 @@ export class SpaceJumper extends Phaser.Scene {
   private tileset2!: Phaser.Tilemaps.Tileset;
   private astronaunt!: Astronaunt;
   private star!: Star;
-  private question! : Question;
+  private question!: Question;
+ 
 
   constructor() {
     super({ key: "space-jumper" });
@@ -80,14 +81,17 @@ export class SpaceJumper extends Phaser.Scene {
       this.map.widthInPixels,
       this.map.heightInPixels
     );
-    this.cameras.main.startFollow(this.astronaunt);
+
+      this.cameras.main.startFollow(this.astronaunt);
 
 
-    // adding text 
-     // Instantiate Question and create text
-     this.question = new Question(this, obstacles!); // Pass scene and colliders
-     this.question.createQuestion(objectLayer!); // Call createStars with 
-     this.question.createAnswers(objectLayer!);
+
+
+    // adding text
+    // Instantiate Question and create text
+    this.question = new Question(this, obstacles!); // Pass scene and colliders
+    this.question.createQuestion(objectLayer!); // Call createStars with
+    this.question.createAnswers(objectLayer!);
     // // temporary debugging code
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
     // this.map.renderDebug(debugGraphics, {
@@ -100,5 +104,10 @@ export class SpaceJumper extends Phaser.Scene {
   update(time: number, delta: number): void {
     // Update logic goes here
     this.astronaunt.update(delta);
+
+    // if the player is on the right side of the screen, stop following
+    if(this.cameras.main.worldView.x >= 1824){
+      this.cameras.main.stopFollow()
+    }
   }
 }
