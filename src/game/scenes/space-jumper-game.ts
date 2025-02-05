@@ -14,10 +14,14 @@ export class SpaceJumper extends Phaser.Scene {
     super({ key: "space-jumper" });
   }
 
-  preload(): void {
+ preload(): void {
     this.load.image("bg-tileset", "/adventure/background-tile.png"); // Ensure correct key
     this.load.image("collider-tileset", "/adventure/collider-tileset.png"); // Ensure correct key
     this.load.tilemapTiledJSON("map", "./map.json");
+
+  
+
+    this.load.image('start-btn' , './adventure/play-btn.png');
 
     //astronaunt sprite
     this.load.spritesheet("astronaunt", "./adventure/astronaunt.png", {

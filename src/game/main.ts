@@ -1,5 +1,6 @@
 import { AUTO, Game} from 'phaser';
 import { SpaceJumper } from './scenes/space-jumper-game';
+import HomeScene from './scenes/home';
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -30,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
          
         }, 
     },
-    scene: [SpaceJumper]}
+    scene: [HomeScene, SpaceJumper]}
 
 
 const StartGame = (parent: string)  : Game => {
