@@ -52,7 +52,7 @@ const Header = () => {
       </ul>
 
       <Sheet>
-        <SheetTrigger className="block md:hidden z-[1000]  backdrop-blur-md bg-white/10  self-end justify-self-end p-2 mr-10 border-none">
+        <SheetTrigger className="block md:hidden z-[1000]  backdrop-blur-md bg-white/10  self-end justify-self-end p-2 mr-5 md:mr-10 border-none">
           <MenuIcon className="text-white" />
         </SheetTrigger>
 
