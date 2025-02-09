@@ -4,7 +4,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <BackgroundBeamsWithCollision className='text-white gap-20 flex justify-center items-center flex-col bg-[url("/assets/crew/background-crew-desktop.jpg")] bg-no-repeat bg-cover overflow-hidden h-screen bg-center'>
+    <BackgroundBeamsWithCollision className='text-white flex justify-start md:justify-center items-center flex-col lg:bg-[url("/assets/crew/background-crew-desktop.jpg")]
+    md:bg-[url("/assets/crew/background-crew-tablet.jpg")]
+    bg-[url("/assets/crew/background-crew-mobile.jpg")] h-auto bg-no-repeat bg-cover bg-center'>
        <CrewSection/>
     </BackgroundBeamsWithCollision>
   )

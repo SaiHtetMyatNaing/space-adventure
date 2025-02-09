@@ -4,7 +4,7 @@ import BackgroundBeamsWithCollision from "@/components/ui/background-beams-with-
 
 const page = () => {
   return (
-    <BackgroundBeamsWithCollision className='text-white  flex gap-20 flex-col bg-[url("/assets/technology/background-technology-desktop.jpg")] bg-no-repeat bg-cover h-screen bg-center'>
+    <BackgroundBeamsWithCollision className='text-white  flex items-center justify-center  flex-col bg-[url("/assets/technology/background-technology-desktop.jpg")] h-screen bg-no-repeat bg-cover  bg-center'>
       <TechSection />
     </BackgroundBeamsWithCollision>
   );

@@ -12,8 +12,8 @@ const HeroSection = () => {
         stiffness: 100,
         duration: 0.5,
       }}
-      className=" flex flex-col items-center justify-center sm:flex-row select-none gap-32 sm:gap-10
-        sm:px-10 sm:justify-between sm:self-center 
+      className=" flex flex-col items-center justify-center sm:flex-row select-none gap-20 sm:gap-10
+        sm:px-10 sm:justify-between sm:self-center p-4 
         uppercase md:justify-between md:items-center  text-white h-full lg:py-[4em] text-center max-w-full w-full lg:px-[10em] md:mt-[10em]"
     >
       <div className="flex flex-col items-start justify-start gap-4 p-2 mt-12 md:mt-0 md:p-0 md:max-w-2xl">

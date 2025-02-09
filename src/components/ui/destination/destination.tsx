@@ -18,10 +18,11 @@ const DestinationSection = () => {
         defaultValue="mars"
         className="flex flex-col w-full gap-4 mt-4 md:mt-0"
       >
-        <h1 className="px-10 lg:p-3 text-[1em] sm:text-[1.3em] mt-10 select-none  tracking-[0.3em]">
+        <h1 className="px-10 lg:p-3 text-[1em] sm:text-[1.3em] mt-10 select-none max-w-md tracking-[0.15em] md:tracking-[0.3em]">
           01 Pick Your Destination
         </h1>
 
+        {/* tab list for desktop and tablet view */}
         <div className="justify-center hidden w-full max-w-full md:flex">
           <TabsList className="flex max-w-sm bg-transparent ml-[14em]">
             {destinations.map((destination) => (
@@ -85,7 +86,7 @@ const DestinationSection = () => {
                  
                   </CardHeader>
 
-                  <CardContent className="text-center   md:text-justify min-h-[100px]">
+                  <CardContent className="text-center  md:text-justify min-h-[100px]">
                     <p>{destination.description}</p>
                   </CardContent>
 
