@@ -7,7 +7,7 @@ import MainGame from "@/game/MainGameScreen";
 const Home = () => {
   return (
     <>
-    <BackgroundBeamsWithCollision className='text-whiteflex items-end justify-center   md:bg-[url("/assets/home/background-home-desktop.jpg")]
+    <BackgroundBeamsWithCollision className='text-whiteflex items-center justify-center   md:bg-[url("/assets/home/background-home-desktop.jpg")]
     bg-[url("/assets/home/background-home-mobile.jpg")]
     sm:bg-[url("/assets/home/background-home-tablet.jpg")] bg-no-repeat bg-cover bg-center'>
       <HeroSection />

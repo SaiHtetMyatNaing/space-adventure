@@ -16,7 +16,7 @@ const HeroSection = () => {
         sm:px-10 sm:justify-between sm:self-center p-4 
         uppercase md:justify-between md:items-center  text-white h-full lg:py-[4em] text-center max-w-full w-full lg:px-[10em] md:mt-[10em]"
     >
-      <div className="flex flex-col items-start justify-start gap-4 p-2 mt-12 md:mt-0 md:p-0 md:max-w-2xl">
+      <div className="flex flex-col items-start justify-start gap-4 p-2 md:mt-0 md:p-0 md:max-w-2xl">
         <h1 className="tracking-[0.3em] max-w-full w-full">
           So, You want to go to
         </h1>

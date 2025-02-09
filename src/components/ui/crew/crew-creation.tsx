@@ -53,13 +53,22 @@ const CrewSection = () => {
                   ))}
                 </TabsList>
 
-                <Image
-                  src={destination.image.src}
-                  alt={destination.image.alt}
-                  width={450}
-                  height={400}
-                  className="w-56 h-56 md:ml-12 md:order-2 order-1 mt-1 rotating-image md:w-[20em] max-h-[26em] max-w-[26em] md:h-[20em] lg:w-[26em] lg:h-[26em] flex-shrink-0"
-                />
+                <motion.div
+                  className="flex flex-col items-center justify-center gap-10"
+                  initial={{ scale: 0.7 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    duration: 1,
+                  }}
+                >
+                  <Image
+                    src={destination.image.src}
+                    alt={destination.image.alt}
+                    width={450}
+                    height={400}
+                    className="w-56 h-56 md:ml-12 rotating-image md:w-[20em] max-h-[26em] max-w-[26em] md:h-[20em] lg:w-[26em] lg:h-[26em]"
+                  />
+                </motion.div>
               </TabsContent>
             );
           })}

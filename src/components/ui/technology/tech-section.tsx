@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-import { motion } from "framer-motion"; // Import motion
+import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { destinations } from "@/lib/data";
 import {
@@ -14,42 +13,33 @@ import {
 } from "@/components/ui/card";
 
 const TechSection = () => {
-  // Animation variants for the pop-up effect
-  const popUpVariants = {
-    hidden: { opacity: 0, scale: 0.8 }, // Start hidden and scaled down
-    visible: { opacity: 1, scale: 1 }, // Fully visible and at normal scale
-  };
-
   return (
     <motion.main
-      className="flex items-center justify-center w-full max-w-6xl mx-auto overflow-hidden"
-      initial="hidden"
-      animate="visible"
-      variants={popUpVariants}
-      transition={{ duration: 0.5 }} // Adjust duration as needed
+      className="flex items-center justify-center w-full max-w-6xl p-3 mx-auto md:mt-44"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
     >
       <Tabs
         defaultValue="mars"
-        className="flex flex-col justify-between w-full mx-auto"
+        className="flex flex-col justify-between w-full gap-4 mx-auto"
       >
-        <h1 className="ml-6 text-[1.3em] tracking-[0.3em]">
-          02 Meet Your Crew
-        </h1>
-
-        {destinations.map((destination) => {
-          return (
+        <h1 className="ml-6 text-[1.3em] tracking-[0.3em]">03 Technology</h1>
+        <div className="relative min-h-[500px] h-full">
+          {destinations.map((destination) => (
             <TabsContent
               value={destination.tabValue}
               key={destination.tabValue}
-              className="flex items-center justify-between max-w-6xl"
+              className="flex flex-col items-center justify-between h-full max-w-6xl md:flex-row"
             >
-              <Card className="flex items-center max-w-xl text-white bg-transparent border-none ">
-                <CardHeader className="flex items-start justify-start w-full max-w-full py-2">
-                  <TabsList className="flex flex-col items-start justify-center w-full h-full max-w-sm gap-3 bg-transparent">
-                    {destinations.map((destination, index) => (
+              <Card className="flex flex-col items-center order-2 max-w-xl text-white bg-transparent border-none md:order-1 md:flex-row">
+
+                <CardHeader className="items-center order-2 max-w-full py-2 md:order-1w-full md:flex-row">
+                  <TabsList className="flex flex-row w-full h-full max-w-sm gap-3 bg-transparent md:flex-col">
+                    {destinations.map((_, index) => (
                       <TabsTrigger
-                        key={destination.tabValue}
-                        value={destination.tabValue}
+                        key={_.tabValue}
+                        value={_.tabValue}
                         className="w-5 h-5 rounded-full cursor-pointer bg-white/10"
                       >
                         {index + 1}
@@ -57,29 +47,40 @@ const TechSection = () => {
                     ))}
                   </TabsList>
                 </CardHeader>
-                <CardFooter className="flex flex-col items-start h-76">
+
+                <CardFooter className="flex flex-col items-center md:items-start md:order-2 h-76">
                   <CardTitle className="text-[2.3em] font-extralight text-white/60 uppercase tracking-wider">
                     {destination.name}
                   </CardTitle>
                   <CardDescription className="text-[3em] text-white">
                     {destination.name}
                   </CardDescription>
-                  <CardContent className="-ml-5">
+                  <CardContent className="-ml-5 text-center md:text-justify">
                     <p>{destination.description}</p>
                   </CardContent>
                 </CardFooter>
+
               </Card>
 
-              <Image
-                src={destination.image.src}
-                alt={destination.image.alt}
-                width={450}
-                height={400}
-                className="w-56 h-56 md:ml-12 md:order-2 order-1 mt-1 rotating-image md:w-[20em] max-h-[26em] max-w-[26em] md:h-[20em] lg:w-[26em] lg:h-[26em] flex-shrink-0"
-              />
+              <motion.div
+                className="flex flex-col items-center justify-center order-1 gap-10 md:order-2"
+                initial={{ scale: 0.7 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  duration: 1,
+                }}
+              >
+                <Image
+                  src={destination.image.src}
+                  alt={destination.image.alt}
+                  width={450}
+                  height={400}
+                  className="w-56 h-56 md:ml-12 rotating-image md:w-[20em] max-h-[26em] max-w-[26em] md:h-[20em] lg:w-[26em] lg:h-[26em]"
+                />
+              </motion.div>
             </TabsContent>
-          );
-        })}
+          ))}
+        </div>
       </Tabs>
     </motion.main>
   );

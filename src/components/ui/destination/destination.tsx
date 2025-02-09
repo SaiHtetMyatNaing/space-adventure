@@ -16,7 +16,7 @@ const DestinationSection = () => {
     <main className="flex items-center justify-center w-full gap-2 p-4 mx-auto md:px-0 max-w-7xl">
       <Tabs
         defaultValue="mars"
-        className="flex flex-col w-full gap-4 mt-4 md:mt-0"
+        className="flex flex-col w-full gap-4 mt-4 md:mt-24"
       >
         <h1 className="px-10 lg:p-3 text-[1em] sm:text-[1.3em] mt-10 select-none max-w-md tracking-[0.15em] md:tracking-[0.3em]">
           01 Pick Your Destination
