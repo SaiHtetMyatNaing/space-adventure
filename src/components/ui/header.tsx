@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./sheet";
-import { MenuIcon} from "lucide-react";
+import { MenuIcon } from "lucide-react";
 
 const Header = () => {
   const menuList = [
@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <motion.header
-      className="absolute right-0 z-10 w-full max-w-2xl top-10"
+      className="absolute right-0 z-10 flex items-end justify-end w-full max-w-2xl top-3 md:top-10"
       animate="visible"
       exit="exit"
       variants={headerVariants}
@@ -52,24 +52,23 @@ const Header = () => {
       </ul>
 
       <Sheet>
-        <SheetTrigger className="block md:hidden z-[1000]  backdrop-blur-md bg-white/10  self-end justify-self-end p-2 mr-5 md:mr-10 border-none">
+        <SheetTrigger className="block md:hidden z-[1000] backdrop-blur-md bg-white/10  p-2 mr-5 md:mr-10 border-none">
           <MenuIcon className="text-white" />
         </SheetTrigger>
 
         <SheetContent className="flex flex-col items-center w-full max-w-sm border-none bg-white/10 backdrop-blur-lg">
           <SheetHeader className="mt-20">
-             <SheetTitle className="hidden">Navigation Bar</SheetTitle>
-              <SheetDescription className="flex flex-col  items-start justify-between w-full max-h-[30em] h-[20em] text-sm">
-                {menuList.map((item) => (
-                  <li
-                    key={item.id}
-                    className="flex flex-col items-start text-white uppercase gap-x-2"
-                  >
-                    <Link href={item.href}>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
+            <SheetTitle className="hidden">Navigation Bar</SheetTitle>
+            <SheetDescription className="flex flex-col  items-start justify-between w-full max-h-[30em] h-[20em] text-sm">
+              {menuList.map((item) => (
+                <li
+                  key={item.id}
+                  className="flex flex-col items-start text-white uppercase gap-x-2"
+                >
+                    {" "}
+                    <Link href={item.href}>{item.name}</Link>
+                </li>
+              ))}
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

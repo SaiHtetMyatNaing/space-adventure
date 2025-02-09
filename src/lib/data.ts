@@ -5,7 +5,7 @@ type DestinationImage = {
 };
 
 // Type definition for destination
-type Destination = {
+export type Destination = {
   name: string;
   description: string;
   image: DestinationImage;
@@ -25,7 +25,7 @@ export const destinations: Destination[] = [
       alt: "Mars",
     },
     tabValue: "mars",
-    averageDistance: "100km",
+    averageDistance: "100 Mils. km",
     averageTravelTime: "10 days",
   },
   {
@@ -37,7 +37,7 @@ export const destinations: Destination[] = [
       alt: "Europa",
     },
     tabValue: "europa",
-    averageDistance: "100km",
+    averageDistance: "100Mil. km",
     averageTravelTime: "10 days",
   },
   {
@@ -49,7 +49,7 @@ export const destinations: Destination[] = [
       alt: "Moon",
     },
     tabValue: "moon",
-    averageDistance: "100km",
+    averageDistance: "100Mils.km",
     averageTravelTime: "10 days",
   },
   {
@@ -61,7 +61,7 @@ export const destinations: Destination[] = [
       alt: "Titan",
     },
     tabValue: "titan",
-    averageDistance: "100km",
+    averageDistance: "100Mils. km",
     averageTravelTime: "10 days",
   },
 ];

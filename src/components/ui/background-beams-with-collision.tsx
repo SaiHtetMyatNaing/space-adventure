@@ -66,11 +66,11 @@ export const BackgroundBeamsWithCollision = ({
     },
   ];
 
-  return (
+  return (  
     <div
       ref={parentRef}
       className={cn(
-        "h-screen bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 relative flex items-center w-full justify-center overflow-hidden",
+        "min-h-screen bg-gradient-to-b from-white overflow-hidden to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 relative flex items-center w-full justify-center",
         className
       )}
     >
@@ -237,7 +237,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        transition={{  ease: "easeOut" }}
         className="absolute top-0 w-10 h-2 m-auto rounded-full -inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
       ></motion.div>
       {spans.map((span) => (

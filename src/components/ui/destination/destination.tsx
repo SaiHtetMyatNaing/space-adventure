@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
-import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { destinations } from "@/lib/data";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -15,101 +13,103 @@ import {
 import { motion } from "framer-motion";
 const DestinationSection = () => {
   return (
-    <>
+    <main className="flex items-center justify-center w-full gap-2 p-4 mx-auto md:px-0 max-w-7xl">
+      <Tabs
+        defaultValue="mars"
+        className="flex flex-col justify-between w-full gap-4 mt-4 md:mt-0"
+      >
+        <h1 className="p-3 text-[1em] mt-10 select-none md:text-[1.3em] tracking-[0.3em]">
+          01 Pick Your Destination
+        </h1>
 
-      <main className="flex items-center justify-between w-full max-w-6xl gap-4 mx-auto overflow-hidden">
-        <Tabs defaultValue="mars" className="flex flex-col w-full mx-auto">
-          <h1 className="text-[1.3em] tracking-[0.3em]">
-            01 Pick Your Destination
-          </h1>
-
-          <div className="flex w-full max-w-full justify-center ml-[17em]">
-            <TabsList className="flex max-w-sm bg-transparent justify-self-end">
-              {destinations.map((destination) => (
-                <TabsTrigger
-                  key={destination.tabValue}
-                  value={destination.tabValue}
-                  className="cursor-pointer"
-                >
-                  {destination.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
-
-          {destinations.map((destination) => {
-            return (
-              <motion.div
+        <div className="justify-end hidden w-full max-w-full md:flex">
+          <TabsList className="flex max-w-sm mr-[20em] bg-transparent justify-self-end">
+            {destinations.map((destination) => (
+              <TabsTrigger
                 key={destination.tabValue}
-                className="w-full h-full max-w-full"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  duration: 0.5,
-                }}
+                value={destination.tabValue}
+                className="cursor-pointer"
               >
-                <TabsContent
-                  value={destination.tabValue}
-                  key={destination.tabValue}
-                  className="flex items-center justify-between max-w-6xl"
+                {destination.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
+
+        {destinations.map((destination) => {
+          return (
+            <TabsContent
+              value={destination.tabValue}
+              key={destination.tabValue}
+              className="w-full h-full"
+            >
+              <div
+                className="flex flex-col items-center justify-between max-w-6xl gap-10 md:flex-row"
+              >
+                <motion.div
+                  className="flex flex-col items-center justify-center gap-10"
+                  initial={{ scale: 0.7 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    duration: 1,
+                  }}
                 >
-                  <motion.div
-                    className="w-full h-full max-w-full"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      duration: 0.5,
-                    }}
-                  >
-                    <Image
-                      src={destination.image.src}
-                      alt={destination.image.alt}
-                      width={450}
-                      height={400}
-                      className="ml-12 rotating-image"
-                    />
-                  </motion.div>
+                  <Image
+                    src={destination.image.src}
+                    alt={destination.image.alt}
+                    width={450}
+                    height={400}
+                    className="w-56 h-56 md:ml-12 rotating-image md:w-[26em] md:h-[26em]"
+                  />
+                </motion.div>
 
-                  <Card className="flex flex-col items-start max-w-md gap-3 text-white bg-transparent border-none">
-                    <CardHeader>
-                      <CardTitle className="text-center text-[7em]">
+                <div className="flex justify-center w-full max-w-full -mb-4 md:hidden">
+                  <TabsList className="flex max-w-sm bg-transparent justify-self-end">
+                    {destinations.map((destination) => (
+                      <TabsTrigger
+                        key={destination.tabValue}
+                        value={destination.tabValue}
+                        className="cursor-pointer"
+                      >
                         {destination.name}
-                      </CardTitle>
-                      <CardDescription className="hidden text-justify ">
-                        {destination.name}
-                      </CardDescription>
-                    </CardHeader>
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                </div>
 
-                    <CardContent className="h-32 overflow-hidden text-justify">
-                      <p>{destination.description}</p>
-                    </CardContent>
+                <Card className="flex flex-col max-w-md gap-3 text-white bg-transparent border-2 border-none">
+                  <CardHeader className="self-center py-0 overflow-hidden md:self-start">
+                    <CardTitle className="text-center text-[3em] md:text-[6em]">
+                      {destination.name}
+                    </CardTitle>
+                 
+                  </CardHeader>
 
-                    <CardFooter className="flex items-center justify-between w-full max-w-full py-2 border-t-2 border-white/10">
-                      <div>
-                        <h2> AVG. Distance</h2>
-                        <p className="text-justify text-[2em]">
-                          {destination.averageDistance}
-                        </p>
-                      </div>
-                      <div>
-                        <h2> EST. Travel Time</h2>
-                        <p className="text-justify text-[2em]">
-                          {destination.averageTravelTime}
-                        </p>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-              </motion.div>
-            );
-          })}
-        </Tabs>
-      </main>
-    </>
+                  <CardContent className="text-center md:text-justify min-h-[100px]">
+                    <p>{destination.description}</p>
+                  </CardContent>
+
+                  <CardFooter className="flex flex-col items-center justify-between self-center max-w-[22em] gap-3 py-5  border-t border-white md:py-2 md:max-w-full w-full md:border-t-2 md:border-white/10 md:gap-0 md:flex-row">
+                    <div className="text-center md:text-justify">
+                      <h2> AVG. Distance</h2>
+                      <p className=" text-[2em]">
+                        {destination.averageDistance}
+                      </p>
+                    </div>
+                    <div className="text-center md:text-justify">
+                      <h2> EST. Travel Time</h2>
+                      <p className=" text-[2em]">
+                        {destination.averageTravelTime}
+                      </p>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </div>
+            </TabsContent>
+          );
+        })}
+      </Tabs>
+    </main>
   );
 };
 

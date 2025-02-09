@@ -15,7 +15,6 @@ import { motion } from "framer-motion";
 
 const CrewSection = () => {
   return (
-    <>
      
       <main className="flex items-center justify-between w-full max-w-6xl gap-2 mx-auto overflow-hidden">
         <Tabs defaultValue="mars" className="flex flex-col w-full mx-auto">
@@ -46,7 +45,7 @@ const CrewSection = () => {
                 className="flex items-center justify-between max-w-6xl"
               >
                 <Card className="flex flex-col items-start max-w-md gap-2 text-white bg-transparent border-none ">
-                  <CardHeader className="flex flex-col gap-2 h-96">
+                  <CardHeader className="flex flex-col gap-2">
                     <CardTitle className="text-[2.3em] font-extralight text-white/60 uppercase tracking-wider">
                       {destination.name}
                     </CardTitle>
@@ -84,7 +83,6 @@ const CrewSection = () => {
           })}
         </Tabs>
       </main>
-    </>
   );
 };
 
