@@ -16,14 +16,14 @@ const DestinationSection = () => {
     <main className="flex items-center justify-center w-full gap-2 p-4 mx-auto md:px-0 max-w-7xl">
       <Tabs
         defaultValue="mars"
-        className="flex flex-col justify-between w-full gap-4 mt-4 md:mt-0"
+        className="flex flex-col w-full gap-4 mt-4 md:mt-0"
       >
-        <h1 className="p-3 text-[1em] mt-10 select-none md:text-[1.3em] tracking-[0.3em]">
+        <h1 className="px-10 lg:p-3 text-[1em] sm:text-[1.3em] mt-10 select-none  tracking-[0.3em]">
           01 Pick Your Destination
         </h1>
 
-        <div className="justify-end hidden w-full max-w-full md:flex">
-          <TabsList className="flex max-w-sm mr-[20em] bg-transparent justify-self-end">
+        <div className="justify-center hidden w-full max-w-full md:flex">
+          <TabsList className="flex max-w-sm bg-transparent ml-[14em]">
             {destinations.map((destination) => (
               <TabsTrigger
                 key={destination.tabValue}
@@ -59,7 +59,7 @@ const DestinationSection = () => {
                     alt={destination.image.alt}
                     width={450}
                     height={400}
-                    className="w-56 h-56 md:ml-12 rotating-image md:w-[26em] md:h-[26em]"
+                    className="w-56 h-56 md:ml-12 rotating-image md:w-[20em] max-h-[26em] max-w-[26em] md:h-[20em] lg:w-[26em] lg:h-[26em]"
                   />
                 </motion.div>
 
@@ -77,15 +77,15 @@ const DestinationSection = () => {
                   </TabsList>
                 </div>
 
-                <Card className="flex flex-col max-w-md gap-3 text-white bg-transparent border-2 border-none">
-                  <CardHeader className="self-center py-0 overflow-hidden md:self-start">
-                    <CardTitle className="text-center text-[3em] md:text-[6em]">
+                <Card className="flex flex-col max-w-lg gap-3 px-3 text-white bg-transparent border-2 border-none md:max-w-md">
+                  <CardHeader className="self-center py-0 overflow-hidden md:px-6 md:self-start">
+                    <CardTitle className="text-center text-[3em]  md:text-[4em] lg:text-[6em]">
                       {destination.name}
                     </CardTitle>
                  
                   </CardHeader>
 
-                  <CardContent className="text-center md:text-justify min-h-[100px]">
+                  <CardContent className="text-center   md:text-justify min-h-[100px]">
                     <p>{destination.description}</p>
                   </CardContent>
 
