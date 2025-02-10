@@ -10,7 +10,7 @@ export const BackgroundBeamsWithCollision = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
   
   const beams = [
@@ -70,7 +70,7 @@ export const BackgroundBeamsWithCollision = ({
     <div
       ref={parentRef}
       className={cn(
-        "min-h-screen bg-gradient-to-b from-white overflow-hidden to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 relative flex items-center w-full justify-center",
+        "min-h-screen overflow-hidden from-neutral-950to-neutral-800 relative flex items-center w-full justify-center",
         className
       )}
     >

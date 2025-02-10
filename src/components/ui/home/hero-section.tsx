@@ -29,7 +29,7 @@ const HeroSection = () => {
       </div>
 
       <Link
-        href="/adventure"
+        href="/astro"
         className="flex items-center justify-center text-lg text-center text-black bg-white rounded-full w-44 h-44 md:w-64 md:h-64"
       >
         Explore

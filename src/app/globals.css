@@ -57,15 +57,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 .rotating-image {
   animation: rotate 20s linear infinite; /* Animation for rotation */
 }
@@ -156,6 +147,8 @@
     box-shadow: .2em -.2em 0 0 currentcolor;
   }
 }
+
+
 
 
 
