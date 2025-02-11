@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useRef } from "react";
 import { IRefPhaserGame } from "./phaser-game";
 import dynamic from "next/dynamic";
@@ -8,6 +8,9 @@ const PhaserGame = dynamic(
   () => import("./phaser-game").then((mod) => mod.PhaserGame),
   {
     ssr: false,
+    loading: () => <div className="w-full h-full flex items-center justify-center">
+    <div className="loader"></div>
+  </div>,
   }
 );
 

@@ -8,7 +8,9 @@ import { Cover } from "../cover";
 
 const MapSection = dynamic(() => import("./map"), {
   ssr: false,
-  loading: () => <div className="h-[40em] loader">:oading....</div>,
+  loading: () => <div className="flex items-center justify-center w-full h-full">
+  <div className="loader"></div>
+</div>,
 });
 
 const IPTrackerSection = ({ data }: { data: IPGeoLocation }) => {

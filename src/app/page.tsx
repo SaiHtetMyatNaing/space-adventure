@@ -3,8 +3,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import React from "react";
 import IPTrackerSection from "@/components/ui/home/ip-tracker-section";
 import { getIpAddress } from "@/lib/fetch-data/get-location";
-
-
+import MainGame from "@/game/MainGameScreen";
 
 
 const Home = async () => {
@@ -22,6 +21,7 @@ const Home = async () => {
         <HeroSection />
       </BackgroundBeamsWithCollision>
 
+      <MainGame/>
       {result.success ? (
         <IPTrackerSection data={result.data} />
       ) : (
