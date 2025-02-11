@@ -56,6 +56,12 @@
     --chart-5: 340 75% 55%
   }
 }
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
 
 .rotating-image {
   animation: rotate 20s linear infinite; /* Animation for rotation */

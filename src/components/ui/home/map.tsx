@@ -1,20 +1,42 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
 
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { IPGeoLocation } from "@/lib/types/geo-location";
+import dynamic from "next/dynamic";
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false, loading: () => <div className="h-[40em] loader"></div> }
+);
+
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
+
 import { Icon } from "leaflet";
-import { IPGeoLocation } from "@/app/page";
 
-const MapSection = ({data} : {data :IPGeoLocation}) => {
+const MapSection = ({ data }: { data: IPGeoLocation }) => {
 
- const customIcon = new Icon({
-    iconUrl : "/marker.png",
-    iconSize: [38, 38],
- })
+
+  const customIcon = new Icon({
+    iconUrl: "/marker.png",
+    iconSize: [38, 38],})
+
+
   return (
     <MapContainer
-      center={[data.location.lat, data.location.lng]}
-      className="h-[40em]"
+       key={`${data.lat}-${data.lon}`}
+      center={[data.lat, data.lon]}
+      className="h-[40em] max-w-4xl p-4 w-full mx-auto"
       zoom={13}
       scrollWheelZoom={true}
     >
@@ -23,10 +45,8 @@ const MapSection = ({data} : {data :IPGeoLocation}) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Marker icon={customIcon} position={[data.location.lat, data.location.lng]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+      <Marker icon={customIcon} position={[data.lat, data.lon]}>
+        <Popup>{data.city}</Popup>
       </Marker>
     </MapContainer>
   );
