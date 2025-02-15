@@ -6,7 +6,7 @@ import { destinations } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
-const CrewSection = () => {
+const   CrewSection = () => {
   return (
     <main className="flex items-center justify-center w-full gap-2 px-5 mx-auto mt-20 md:mt-32 max-w-7xl">
       <Tabs
