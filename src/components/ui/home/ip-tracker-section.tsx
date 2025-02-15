@@ -1,45 +1,18 @@
-"use client";
-import React, { useEffect } from "react";
+'use client'
 import { Card, CardContent, CardHeader } from "../card";
 import dynamic from "next/dynamic";
 import { IPGeoLocation } from "@/lib/types/geo-location";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cover } from "../cover";
+
 
 const MapSection = dynamic(() => import("./map"), {
   ssr: false,
-  loading: () => <div className="flex items-center justify-center w-full h-full">
+  loading: () => <div className="flex items-center justify-center  h-full min-h-[500px] mx-auto">
   <div className="loader"></div>
 </div>,
 });
 
 const IPTrackerSection = ({ data }: { data: IPGeoLocation }) => {
-  const pathname = usePathname();
-  const { replace } = useRouter();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (data.query.length > 0) {
-      const params = new URLSearchParams(searchParams);
-      if (data.query.length > 0) {
-  
-        params.set("ip",  data.query);
-  
-        if (data.city) {
-          params.set("location", data.country);
-        }
-        if (data.timezone) {
-          params.set("timezone", data.timezone);
-        }
-        if (data.isp) {
-          // If 'ips' is an array, you might want to join them into a string
-          params.set("ips", data.isp); // Example: comma-separated
-        }
-        replace(`${pathname}?${params.toString()}`  , {scroll: false});
-      }}
-  } , [])
-    
-
   return (
     <div className="w-full max-w-full mx-auto">
       <div className='flex flex-col items-center justify-center w-full overflow-hidden cursor-pointer md:gap-4 md:py-4'>

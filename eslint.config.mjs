@@ -11,6 +11,7 @@
 
   const eslintConfig = [
     ...compat.extends("next/core-web-vitals", "next/typescript"),
+    //disabling the rules of typescript 
     {rules: {
       "react-hooks/exhaustive-deps": "off",
       "@typescript-eslint/no-unused-vars": "off", // Change 'error' to 'warn' or 'off'

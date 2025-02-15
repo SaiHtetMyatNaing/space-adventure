@@ -2,12 +2,12 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 import { getEventBus } from "./EventBus";
 import StartGame from "./main";
+import { motion} from "framer-motion";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Phaser.Scene | null;
 }
-
 interface IProps {
   currentActiveScene?: (scene_instance: Phaser.Scene) => void;
 }
@@ -53,7 +53,12 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
     }, [currentActiveScene, ref]);
 
     return (
-        <div id="game-container" />
+        <motion.div 
+          initial={{opacity: 0 , x: -400}}
+          animate={{opacity: 1 , x: 0 , y:0}}
+          transition={{duration: 0.6}}
+        id="game-container"
+ />
     );
   }
 );
