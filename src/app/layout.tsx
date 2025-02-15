@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import Header from "@/components/ui/header";
+import PageWrapper from "@/components/ui/home/page-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable } bg-black relative  antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-black relative  antialiased`}
       >
         <Header />
-        {children}
+        <PageWrapper>{children}</PageWrapper>
       </body>
     </html>
   );
